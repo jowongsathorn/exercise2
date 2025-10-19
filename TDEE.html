@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>สอนออกกำลังกายออนไลน์</title>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Prompt', sans-serif; background-color: #fefefe; color: #333; line-height: 1.6; }
+    a { text-decoration: none; color: #1976d2; }
+
+    header { background-color: #ffffff; border-bottom: 1px solid #e0e0e0; text-align: center; padding: 25px 0; font-weight: 600; font-size: 1.6rem; color: #1976d2; position: sticky; top: 0; z-index: 100; }
+
+    .menu-toggle { position: fixed; top: 20px; right: 20px; font-size: 2rem; cursor: pointer; z-index: 1001; color: #1976d2; }
+    .side-menu { position: fixed; top: 0; right: -260px; width: 240px; height: 100%; background: #fff; box-shadow: -3px 0 10px rgba(0,0,0,0.1); display: flex; flex-direction: column; padding-top: 80px; transition: right 0.3s ease; z-index: 1000; }
+    .side-menu.show { right: 0; }
+    .side-menu a { padding: 15px 25px; text-decoration: none; color: #333; border-bottom: 1px solid #eee; font-weight: 500; }
+    .side-menu a:hover { background: #f0f0f0; }
+
+    .overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.3); display:none; z-index: 999; }
+    .overlay.show { display:block; }
+
+    .hero { position: relative; width: 100%; height: 350px; background-image: url('photo/photo1549.jpg'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: 600; text-align: center; margin-top: 60px; }
+    .hero::after { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.25); }
+    .hero h1 { position: relative; z-index: 1; }
+
+    .section { width: 90%; max-width: 1200px; margin: 50px auto; }
+    .section h2 { font-size: 1.8rem; color: #1976d2; margin-bottom: 25px; text-align: center; }
+
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+    .card { background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); overflow: hidden; padding: 20px; transition: transform 0.3s ease; cursor: pointer; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.12); }
+    .card h3 { color: #1976d2; margin-bottom: 10px; font-size: 1.3rem; }
+    .card p { font-size: 0.95rem; color: #555; }
+
+    /* TDEE Calculator */
+    .tdee { background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); max-width: 500px; margin: 0 auto; }
+    .tdee label { display: block; margin-bottom: 8px; font-weight: 500; }
+    .tdee input, .tdee select { width: 100%; padding: 8px 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 6px; }
+    .tdee button { background: #1976d2; color: #fff; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; }
+    .tdee button:hover { background: #115293; }
+    .tdee-result { margin-top: 15px; font-weight: 600; color: #1976d2; }
+
+    @media(max-width:900px){ .cards{grid-template-columns: repeat(2,1fr);} }
+    @media(max-width:600px){ .cards{grid-template-columns: 1fr;} .hero{height:200px; font-size:1.5rem;} }
+  </style>
+</head>
+<body>
+
+  <!-- Hamburger Menu Button -->
+  <div class="menu-toggle" id="menuToggle">&#9776;</div>
+
+  <!-- Side Menu -->
+  <nav class="side-menu" id="sideMenu">
+    <a href="index.html">หน้าแรก</a>
+       <a href="TDEE.html">คำนวนTDEE</a>
+    <a href="exercise.html">ท่าออกกำลังกาย</a>
+
+    <a href="contact.html">ติดต่อเรา</a>
+  </nav>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <header>
+    <h1>สอนออกกำลังกายออนไลน์</h1>
+  </header>
+
+
+
+  <div class="section">
+    <h2>TDEE คืออะไร?</h2>
+    <div class="card" style="max-width:800px; margin:0 auto; text-align:center;">
+      <p style="font-size:1.05rem; color:#444; margin-bottom:15px;">
+        <b>TDEE</b> หรือ <b>Total Daily Energy Expenditure</b> คือ 
+        “พลังงานที่ร่างกายใช้ทั้งหมดใน 1 วัน” ทั้งจากการหายใจ เดิน ทำงาน และออกกำลังกาย
+        ซึ่งเป็นตัวเลขสำคัญในการวางแผนการ <span style="color:#1976d2; font-weight:600;">ลดน้ำหนัก</span> 
+        หรือ <span style="color:#1976d2; font-weight:600;">เพิ่มกล้ามเนื้อ</span>
+      </p>
+      <p style="font-size:1rem; color:#555;">
+        💡 หากคุณกินพลังงาน “เท่ากับ” ค่า TDEE น้ำหนักของคุณจะคงที่  
+        หากกิน “น้อยกว่า” TDEE น้ำหนักจะลดลง  
+        และหากกิน “มากกว่า” TDEE ร่างกายจะเก็บพลังงานส่วนเกินไว้เป็นไขมัน
+      </p>
+    </div>
+  </div>
+  
+
+  <!-- TDEE Calculator -->
+  <div class="section">
+    <h2>คำนวณ TDEE ของคุณ</h2>
+    <div class="tdee">
+      <label>น้ำหนัก (kg)</label>
+      <input type="number" id="weight" placeholder="เช่น 70">
+      <label>ส่วนสูง (cm)</label>
+      <input type="number" id="height" placeholder="เช่น 175">
+      <label>อายุ (ปี)</label>
+      <input type="number" id="age" placeholder="เช่น 25">
+      <label>เพศ</label>
+      <select id="gender">
+        <option value="male">ชาย</option>
+        <option value="female">หญิง</option>
+      </select>
+      <label>กิจกรรมประจำวัน</label>
+      <select id="activity">
+        <option value="1.2">นั่งทำงาน/ไม่ออกกำลังกาย</option>
+        <option value="1.375">ออกกำลังกาย 1-3 วัน/สัปดาห์</option>
+        <option value="1.55">ออกกำลังกาย 3-5 วัน/สัปดาห์</option>
+        <option value="1.725">ออกกำลังกาย 6-7 วัน/สัปดาห์</option>
+        <option value="1.9">ออกกำลังกายหนักมาก/นักกีฬา</option>
+      </select>
+      <button onclick="calculateTDEE()">คำนวณ</button>
+      <div class="tdee-result" id="tdeeResult"></div>
+    </div>
+  </div>
+
+  <script>
+    // Toggle Menu
+    const menuToggle = document.getElementById("menuToggle");
+    const sideMenu = document.getElementById("sideMenu");
+    const overlay = document.getElementById("overlay");
+
+    menuToggle.addEventListener("click", () => {
+      sideMenu.classList.toggle("show");
+      overlay.classList.toggle("show");
+    });
+
+    overlay.addEventListener("click", () => {
+      sideMenu.classList.remove("show");
+      overlay.classList.remove("show");
+    });
+
+    // TDEE Calculator
+    function calculateTDEE() {
+      const weight = parseFloat(document.getElementById('weight').value);
+      const height = parseFloat(document.getElementById('height').value);
+      const age = parseInt(document.getElementById('age').value);
+      const gender = document.getElementById('gender').value;
+      const activity = parseFloat(document.getElementById('activity').value);
+
+      if (!weight || !height || !age) { alert("กรุณากรอกข้อมูลให้ครบ"); return; }
+
+      let bmr;
+      if (gender === "male") {
+        bmr = 10*weight + 6.25*height - 5*age + 5;
+      } else {
+        bmr = 10*weight + 6.25*height - 5*age - 161;
+      }
+
+      const tdee = Math.round(bmr * activity);
+      document.getElementById('tdeeResult').innerText = `TDEE ของคุณคือ ${tdee} แคลอรี/วัน`;
+    }
+  </script>
+
+</body>
+</html>

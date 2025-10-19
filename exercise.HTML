@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>สอนออกกำลังกายออนไลน์</title>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Reset & Base */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Prompt', sans-serif;
+      background-color: #fefefe;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      background-color: #ffffff;
+      border-bottom: 1px solid #e0e0e0;
+      text-align: center;
+      padding: 25px 0;
+      font-weight: 600;
+      font-size: 1.3rem;
+      color: #1976d2;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    header nav {
+      display: none; /* ซ่อนเมนูปกติ */
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 350px;
+      background-image: url('photo/photo1549.jpg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+      font-weight: 600;
+      text-align: center;
+    }
+
+   
+
+    .hero h1 {
+      position: relative;
+      z-index: 1;
+    }
+
+  /* Section Title */
+.section-title {
+  text-align: center;
+  font-size: 1.7rem;
+  color: #1976d2;
+  margin: 30px 0; /* เหลือแค่ 5px ด้านบนและล่าง */
+  font-weight: 600;
+}
+
+/* Container & Cards */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto; /* ลบ margin-bottom ออกทั้งหมด */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px; /* ลดช่องว่างระหว่างการ์ดให้น้อยลง */}
+
+    .exercise-card {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .exercise-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+    }
+
+    .exercise-card img {
+      width: 100%;
+      display: block;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .content {
+      padding: 20px;
+    }
+
+    .content h2 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: #1976d2;
+      font-weight: 600;
+    }
+
+    .content p {
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 8px;
+    }
+
+    .youtube-link {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 0.95rem;
+      color: #1976d2;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .youtube-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #f9f9f9;
+      text-align: center;
+      padding: 25px 0;
+      font-size: 0.95rem;
+      color: #777;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    /* Menu 3 จุด & Side Menu */
+    .menu-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 2rem;
+      cursor: pointer;
+      z-index: 1001;
+      color: #1976d2;
+    }
+
+    .side-menu {
+      position: fixed;
+      top: 0;
+      right: -260px;
+      width: 240px;
+      height: 100%;
+      background: #fff;
+      box-shadow: -3px 0 10px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      padding-top: 80px;
+      transition: right 0.3s ease;
+      z-index: 1000;
+    }
+
+    .side-menu a {
+      padding: 15px 25px;
+      text-decoration: none;
+      color: #333;
+      border-bottom: 1px solid #eee;
+      font-weight: 500;
+    }
+
+    .side-menu a:hover {
+      background: #f0f0f0;
+    }
+
+    .overlay {
+      position: fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background: rgba(0,0,0,0.3);
+      display:none;
+      z-index: 999;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        height: 250px;
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+<!-- ปุ่มเมนู 3 ขีด -->
+<div class="menu-toggle" id="menuToggle">&#9776;</div>
+
+
+  <!-- เมนูด้านข้าง -->
+  <nav class="side-menu" id="sideMenu">
+    <a href="index.html">หน้าแรก</a>
+     <a href="TDEE.html">คำนวนTDEE</a>
+    <a href="exercise.html">ท่าออกกำลังกาย</a>
+  
+    <a href="contact.html">ติดต่อเรา</a>
+  </nav>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <header>
+    <h1>สอนออกกำลังกายออนไลน์</h1>
+  </header>
+  
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const sideMenu = document.getElementById("sideMenu");
+    const overlay = document.getElementById("overlay");
+
+    menuToggle.addEventListener("click", () => {
+      sideMenu.style.right = sideMenu.style.right === "0px" ? "-260px" : "0px";
+      overlay.style.display = overlay.style.display === "block" ? "none" : "block";
+    });
+
+    overlay.addEventListener("click", () => {
+      sideMenu.style.right = "-260px";
+      overlay.style.display = "none";
+    });
+  </script>
+
+</body>
+
+  <!-- ส่วนท่าออกกำลังกายที่บ้าน -->
+  <h2 class="section-title">ท่าออกกำลังกายโดยไม่ใช้อุปกรณ์</h2>
+  <div class="container">
+
+    <div class="exercise-card">
+      <img src="photo/no equipment/bodyweight-squat-800.avif" alt="ท่าสควอท (Squat)">
+      <div class="content">
+        <h2>ท่าสควอท (Squat)</h2>
+       <p><p><strong>ประโยชน์</strong>
+<p>1. เสริมความแข็งแรงของกล้ามเนื้อขา<br>
+2. กระชับก้น (Glutes)</p>
+<p><strong>วิธีการออกกำลังกายพิ้นฐาน</strong><br>
+1. ยืนแยกขาให้กว้างเท่าหัวไหล่<br>
+2. ยืดหลังตรง<br>
+3. ค่อย ๆ ย่อตัวลงดันสะโพกไปด้านหลัง ลงจนต้นขาขนานกับพื้น<br>
+4. ดันส้นเท้าและเกร็งก้นเพื่อกลับขึ้นสู่ท่าเริ่มต้น</p>
+        <a href="https://www.youtube.com/watch?v=Ojkf5qBW0n4" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <img src="photo/chest/pushup.avif" alt="ท่าวิดพื้น (Push Up)">
+      <div class="content">
+        <h2>ท่าวิดพื้น (Push Up)</h2>
+      
+
+<p><strong>ประโยชน์:</strong><br>
+- เสริมกล้ามอก ไหล่ ต้นแขน<br>
+- ช่วยกระชับแขนและลำตัว</p>
+
+<p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+1. วางมือกว้างเท่าหัวไหล่ เหยียดตัวตรง<br>
+2. ค่อย ๆ งอข้อศอกลดตัวลงจนหน้าอกเกือบแตะพื้น<br>
+3. ดันตัวกลับขึ้น เกร็งอกและแขน<br>
+</p>
+</p>
+        <a href="https://www.youtube.com/watch?v=aJqVz6OjnL0&pp=ygUn4LiX4LmI4Liy4Lin4Li04LiU4Lie4Li34LmJ4LiZ4Liq4Lit4LiZ" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <img src="photo/no equipment/burpees-800.avif" alt="burpees">
+      <div class="content">
+        <h2>ท่าพุ่งหลัง(burpees)</h2>
+       
+
+<p><strong>ประโยชน์:</strong><br>
+- เผาผลาญไขมันสูงสุดแบบ Full Body Workout<br>
+- เสริมกล้ามเนื้อขา แขน หน้าอกและแกนกลางลำตัว<br>
+</p>
+
+<p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+1. ยืนตรง เท้ากว้างเท่าหัวไหล่<br>
+2. ย่อตัวลง วางมือบนพื้น<br>
+3. เตะขาไปด้านหลังเข้าสู่ท่าวิดพื้น<br>
+4. วิดพื้น 1 ครั้ง <br>
+5. ดึงขากลับมาที่หน้าอก<br>
+6. กระโดดขึ้นตรง ๆ เหยียดแขนเหนือหัว<br>
+</p>
+
+        <a href="https://youtu.be/C-WHRvnm0Fg" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <img src="photo/no equipment/jumping-jack-800.avif" alt="ท่ากระโดดตบ (Jumping Jack)">
+      <div class="content">
+        <h2>ท่ากระโดดตบ (Jumping Jack)</h2>
+        <p><strong> ท่า Jumping Jack</strong></p>
+
+<p><strong>ประโยชน์:</strong><br>
+- เผาผลาญไขมันได้ดี เพิ่มความฟิตของหัวใจและปอด (Cardio)<br>
+- กระตุ้นกล้ามเนื้อทั่วร่างกาย โดยเฉพาะขา ไหล่ และลำตัว</p>
+
+<p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+1. ยืนตรง แขนแนบลำตัว<br>
+2. กระโดดแยกขาออกพร้อมยกแขนขึ้นเหนือศีรษะ<br>
+3. กระโดดกลับมาชิดขา ลดแขนลงข้างลำตัว<br>
+</p>
+
+        <a href="https://www.youtube.com/watch?v=VT-l9UlqovE&pp=ygUh4LiB4Lij4Liw4LmC4LiU4LiU4LiV4Lia4Liq4Lit4LiZ0gcJCfwJAYcqIYzv" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+      </div>
+    </div>
+
+     <div class="exercise-card">
+    <img src="photo/no equipment/lunge-800.avif" alt="ท่าลันจ์ (Lunge)">
+    <div class="content">
+      <h2>ท่าลันจ์ (Lunge)</h2>
+      <p><strong> ท่าลันจ์ (Lunge)</strong></p>
+
+<p><strong>ประโยชน์:</strong><br>
+- เสริมความแข็งแรงของกล้ามเนื้อขาและก้น<br>
+- ช่วยเพิ่มความสมดุลและความมั่นคงของร่างกาย<br>
+- กระชับต้นขาและสะโพก</p>
+
+<p><strong>วิธีทำ:</strong><br>
+1. ยืนตรง เท้าห่างกันประมาณสะโพก<br>
+2. ก้าวขาข้างหนึ่งไปข้างหน้า<br>
+3. ย่อตัวลงจนเข่าหน้าทำมุม 90° เข่าหลังเกือบแตะพื้น<br>
+4. ดันตัวกลับขึ้นสู่ท่าเริ่มต้น<br>
+</p>
+
+      <a href="https://www.youtube.com/watch?v=ChVb4bgLNYk&pp=ygUObHVuZ2XguKrguK3guJk%3D" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+    </div>
+  </div>
+
+  <div class="exercise-card">
+    <img src="photo/no equipment/bicycle-crunch-800.avif" alt="bicycle-crunch">
+    <div class="content">
+      <h2>ท่าปั่นจักรยานอากาศ(Bicycle Crunch)</h2>
+  
+
+<p><strong>ประโยชน์:</strong><br>
+- เสริมกล้ามเนื้อหน้าท้องส่วนบนและล่าง<br>
+- ช่วยกระชับพุงและลดไขมันรอบเอว<br>
+- พัฒนาความแข็งแรงของแกนกลางลำตัว</p>
+
+<p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+1. นอนหงาย วางมือไว้หลังศีรษะ เข่างอขึ้น 90°<br>
+2. ยกหัวและไหล่ขึ้นจากพื้น<br>
+3. บิดตัวแตะข้อศอกขวากับเข่าซ้าย พร้อมเหยียดขาขวาออก<br>
+4. สลับข้างแตะข้อศอกซ้ายกับเข่าขวาเหมือนกำลังปั่นจักรยาน<br>
+</p>
+
+      <a href="https://youtu.be/dZ_shAbA1Vw" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+    </div>
+  </div>
+
+  <div class="exercise-card">
+    <img src="photo/no equipment/crunches-800.avif" alt="crunches">
+    <div class="content">
+      <h2>crunches</h2>
+      
+
+<p><strong>ประโยชน์:</strong><br>
+- กระชับหน้าท้องส่วนบน <br>
+- เสริมความแข็งแรงของแกนกลางลำตัว<br>
+</p>
+
+<p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+1. นอนหงาย งอเข่า มือวางไว้หลังศีรษะหรือไขว้หน้าอก<br>
+2. ยกหัวและไหล่ขึ้นจากพื้นโดยใช้หน้าท้องเป็นหลัก<br>
+3. หลีกเลี่ยงการดึงคอ ใช้แรงจากหน้าท้อง<br>
+4. ค่อย ๆ ลดตัวกลับลงสู่พื้น<br>
+</p>
+
+      <a href="https://www.youtube.com/watch?v=BtulnsERLo8&pp=ygUnY3J1bmNoZXMg4LiX4Li14LmI4LiW4Li54LiB4LiV4LmJ4Lit4LiH" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+    </div>
+  </div>
+
+  <div class="exercise-card">
+    <img src="photo/no equipment/sit-ups-800.avif" alt="sit-ups">
+    <div class="content">
+      <h2>sit-ups</h2>
+
+
+<p><strong>ประโยชน์:</strong><br>
+- เสริมความแข็งแรงของหน้าท้องทั้งส่วนบนและล่าง<br>
+- ช่วยกระชับเอวและแกนกลางลำตัว<br>
+- พัฒนาความทนทานของกล้ามเนื้อหน้าท้อง</p>
+
+<p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+1. นอนหงาย งอเข่า วางเท้าราบกับพื้น มือไขว้หน้าอกหรือวางไว้หลังศีรษะ<br>
+2. ยกตัวขึ้นจนตัวตั้งตรง ใช้แรงจากหน้าท้อง<br>
+3. ค่อย ๆ ลดตัวกลับลงสู่พื้นอย่างช้า ๆ<br>
+</p>
+
+      <a href="https://www.youtube.com/watch?v=0S77wnUjAMY&pp=ygUdc2l0LXVwcyDguYTguKHguYjguILguLbguYnguJk%3D"  target ="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+    </div>
+  </div>
+
+  <div class="exercise-card">
+    <img src="photo/no equipment/russian-twist-800.avif" alt="russian-twist">
+    <div class="content">
+      <h2>russian-twist</h2>
+    
+      <p><strong>ประโยชน์:</strong><br>
+      - เสริมกล้ามท้องด้านข้าง (Obliques)<br>
+      - พัฒนาความมั่นคงของแกนกลางลำตัว<br>
+      - ช่วยเพิ่มการทรงตัวและความยืดหยุ่น</p>
+      <p><strong>วิธีการออกกำลังกายพิ้นฐาน:</strong><br>
+      1. นั่งลงบนพื้น กางขาเล็กน้อยและงอเข่า<br>
+      2. เอนตัวไปเล็กน้อยให้หลังตรง<br>
+      3. ถือดัมเบลหรือบอลไว้ที่หน้าอก<br>
+      4. หมุนตัวไปทางขวาแล้วกลับมาที่กลาง<br>
+      5. หมุนตัวไปทางซ้ายและกลับสู่กลาง ทำสลับไปมา</p>
+      <a href="https://youtu.be/paYvkM4DcHE" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+    </div>
+  </div>
+</div>
+  
+
+  <!-- ส่วนกล้ามเนื้ออก -->
+  <h2 class="section-title">กล้ามเนื้ออก</h2>
+  <div class="container">
+
+    <div class="exercise-card">
+      <img src="photo/chest/benchpress.avif" alt="Bench Press">
+      <div class="content">
+        <h2>Bench Press</h2>
+    
+
+<p><strong>ประโยชน์:</strong><br>
+- เสริมความแข็งแรงกล้ามเนื้อหน้าอก (Chest)<br>
+- กระชับกล้ามเนื้อไหล่ (Shoulders) และต้นแขนด้านหลัง (Triceps)<br>
+- พัฒนากำลังและความมั่นคงของร่างกายส่วนบน</p>
+
+<p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+1. นอนบนม้านอนราบ วางเท้าราบกับพื้น มือจับบาร์ให้อยู่ระดับกว้างกว่าหัวไหล่เล็กน้อย<br>
+2. ดึงบาร์ออกจากร็อคเกอร์แล้วลดลงมาที่หน้าอกช้า ๆ<br>
+3. ดันบาร์กลับขึ้นจนแขนเหยียดตรง<br>
+4. หายใจเข้าเมื่อดึงลง หายใจออกเมื่อดันขึ้น<br>
+5. ทำ 8–12 ครั้ง ต่อ 3–4 เซต</p>
+
+        <a href="https://www.youtube.com/watch?v=3EKkqKUCDE0" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <img src="photo/chest/inclinebenchpress.avif" alt="inclinebenchpress">
+      <div class="content">
+        <h2>incline benchpress</h2>
+      <p><strong>ประโยชน์:</strong><br>
+      - เสริมกล้ามเนื้อหน้าอกส่วนบน<br>
+      - ช่วยเสริมไหล่หน้าและแขนหลัง</p>
+      <p><strong>วิธีทำ:</strong><br>
+      1. นอนบนม้านั่งปรับเอน 30–45 องศา<br>
+      2. จับบาร์ให้กว้างกว่าช่วงไหล่เล็กน้อย<br>
+      3. ลดบาร์ลงมาที่หน้าอกส่วนบนอย่างช้า ๆ<br>
+      4. ดันบาร์ขึ้นจนแขนตรงโดยไม่ล็อกข้อศอก</p>
+        <a href="https://www.youtube.com/shorts/EoiwMFH0d4Y?feature=share" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+      </div>
+    </div>
+     
+    <div class="exercise-card">
+      <img src="photo/chest/declinebenchpress.avif" alt="declinebenchpress">
+      <div class="content">
+        <h2>decline benchpress</h2>
+       <p><strong>ประโยชน์:</strong><br>
+      - เสริมกล้ามเนื้อหน้าอกส่วนล่าง<br>
+      - ช่วยเสริมไหล่หน้าและแขนหลัง</p>
+      <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+      1. นอนบนม้านั่งปรับเอนลงประมาณ 15–30 องศา<br>
+      2. จับบาร์ให้กว้างกว่าช่วงไหล่เล็กน้อย<br>
+      3. ลดบาร์ลงมาที่หน้าอกส่วนล่างอย่างช้า ๆ<br>
+      4. ดันบาร์ขึ้นจนแขนตรงโดยไม่ล็อกข้อศอก</p>
+        <a href="https://www.youtube.com/shorts/a-UFQE4oxWY" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <img src="photo/chest/inclinedumbbellbenchpress.avif" alt="inclinedumbbellbenchpress">
+      <div class="content">
+        <h2>Incline Dumbbell Bench</h2>
+        <strong>ประโยชน์:</strong><br>
+      - เสริมกล้ามเนื้อหน้าอกส่วนบน<br>
+      - ช่วยเสริมไหล่หน้าและแขนหลัง<br>
+      - เพิ่มความสมดุลแขนทั้งสองข้าง</p>
+      <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+      1. นอนบนม้านั่งปรับเอนขึ้นประมาณ 30–45 องศา<br>
+      2. ถือดัมเบลล์ในแต่ละมือที่ระดับไหล่<br>
+      3. ดันดัมเบลล์ขึ้นตรงจนแขนเหยียดเต็มที่<br>
+      4. ลดดัมเบลล์ลงช้า ๆ กลับสู่ตำแหน่งเริ่มต้น</p>
+        <a href="https://www.youtube.com/shorts/OFfvwJCUcJY" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <img src="photo/chest/dumbbellbenchpress.jpg" alt="Dumbbell Bench Press">
+      <div class="content">
+        <h2>Dumbbell Bench Press</h2>
+        <p><strong>ประโยชน์:</strong><br>
+      - เสริมกล้ามเนื้อหน้าอกส่วนกลาง<br>
+      - ช่วยเสริมไหล่หน้าและแขนหลัง<br>
+      - เพิ่มความสมดุลแขนทั้งสองข้าง</p>
+      <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+      1. นอนบนม้านั่งราบ (Flat Bench)<br>
+      2. ถือดัมเบลล์ในแต่ละมือที่ระดับหน้าอก<br>
+      3. ดันดัมเบลล์ขึ้นตรงจนแขนเหยียดเต็มที่<br>
+      4. ลดดัมเบลล์ลงช้า ๆ กลับสู่ตำแหน่งเริ่มต้น</p>
+        <a href="https://www.youtube.com/watch?v=JQ0BgOlousw" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <img src="photo/chest/decline-dumbbell-bench-press.avif" alt="decline-dumbbell-bench-press">
+      <div class="content">
+        <h2>decline-dumbbell-bench-press</h2>
+       <p><strong>ประโยชน์:</strong><br>
+      - เสริมกล้ามเนื้อหน้าอกส่วนล่าง<br>
+      - ช่วยเสริมไหล่หน้าและแขนหลัง<br>
+      - เพิ่มความสมดุลแขนทั้งสองข้าง</p>
+      <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+      1. นอนบนม้านั่ง Decline<br>
+      2. ถือดัมเบลล์ในแต่ละมือที่ระดับหน้าอก<br>
+      3. ดันดัมเบลล์ขึ้นตรงจนแขนเหยียดเต็มที่<br>
+      4. ลดดัมเบลล์ลงช้า ๆ กลับสู่ตำแหน่งเริ่มต้น</p>
+        <a href="https://www.youtube.com/shorts/Cib10Tg4o-U?feature=share" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <img src="photo/chest/machinechestfly.avif" alt="machinechestfly">
+      <div class="content">
+        <h2>machinechestfly</h2>
+        <p><strong>ประโยชน์:</strong><br>
+      - เสริมกล้ามเนื้อหน้าอก<br>
+      - ช่วยเพิ่มความแข็งแรงและความชัดเจนของกล้ามเนื้อหน้าอก<br>
+      - ปลอดภัยต่อไหล่เพราะเครื่องช่วยควบคุมท่าทาง</p>
+      <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+      1. นั่งบนเครื่อง Machine Chest Fly<br>
+      2. วางแขนทั้งสองข้างบนมือจับเครื่อง<br>
+      3. ดันแขนเข้าหากันจนชิดหน้าอก<br>
+      4. กลับแขนออกช้า ๆ กลับสู่ตำแหน่งเริ่มต้น</p>
+        <a href="https://www.youtube.com/watch?v=G3nm6ELZjDQ" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <img src="photo/chest/cablefly.avif" alt="cablefly">
+      <div class="content">
+        <h2>cable fly</h2>
+      <p><strong>ประโยชน์:</strong><br>
+      - เสริมกล้ามเนื้อหน้าอก<br>
+      - ช่วยเพิ่มความชัดเจนและความแข็งแรงของกล้ามเนื้อหน้าอก<br>
+      - เพิ่มความยืดหยุ่นของไหล่</p>
+      <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+      1. ยืนกลางระหว่างเครื่องเคเบิล<br>
+      2. จับมือจับทั้งสองข้างและก้าวเท้าออกเล็กน้อยเพื่อความสมดุล<br>
+      3. ดึงมือจับเข้าหากันจนหน้าอกเกือบชิด<br>
+      4. ค่อย ๆ คลายแขนกลับสู่ตำแหน่งเริ่มต้น</p>
+        <a href="https://www.youtube.com/watch?v=h5M7nQFpXeA" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <img src="photo/chest/chest-press.avif" alt="chest-press">
+      <div class="content">
+        <h2>chest-press</h2>
+        <p><strong>ประโยชน์:</strong><br>
+      - เสริมกล้ามเนื้อหน้าอก<br>
+      - ช่วยเพิ่มความแข็งแรงของกล้ามแขนด้านหน้า<br>
+      - พัฒนาความมั่นคงของไหล่</p>
+      <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+      1. นั่งลงบนเครื่อง Chest Press และปรับที่นั่งให้เหมาะสม<br>
+      2. วางมือบนมือจับให้แขนตั้งฉากกับพื้น<br>
+      3. ดันมือจับออกไปจนแขนเหยียดตรง แต่ไม่ล็อกข้อศอก<br>
+      4. ค่อย ๆ นำมือจับกลับสู่ตำแหน่งเริ่มต้น</p>
+        <a href="https://www.youtube.com/watch?v=AcedfhCLavg" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+      </div>
+    </div>
+  </div>
+<!-- ส่วนกล้ามเนื้อหลัง -->
+<h2 class="section-title">กล้ามเนื้อหลัง</h2> 
+
+<div class="container">
+
+  <div class="exercise-card">
+    <img src="photo/back/pull-ups.avif" alt="pull-ups">
+    <div class="content">
+      <h2>pull-ups</h2>
+     
+    <p><strong>ประโยชน์:</strong><br>
+    - เสริมกล้ามเนื้อหลังส่วนบน<br>
+    - กระชับแขนและไหล่<br>
+    - พัฒนาความแข็งแรงของแกนกลางลำตัว</p>
+    <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+    1. แขวนตัวบนบาร์ มือวางกว้างเท่าหัวไหล่<br>
+    2. ดึงตัวขึ้นจนคางเกินบาร์<br>
+    3. ลดตัวลงอย่างช้า ๆ</p>
+      <a href="https://www.youtube.com/watch?v=sxLDUfOWI5E&pp=ygURcHVsbCB1cCDguKrguK3guJk%3D" target="_blank" class="youtube-link">
+        ชมวิดีโอบน YouTube
+      </a>
+    </div>
+  </div>
+
+  <div class="exercise-card">
+    <img src="photo/back/latpulldown.avif" alt="latpulldown">
+    <div class="content">
+      <h2>latpulldown</h2>
+      <p><strong>ประโยชน์:</strong><br>
+    - เสริมกล้ามเนื้อหลัง<br>
+    - กระชับแขนและไหล่<br>
+    - พัฒนากำลังส่วนบน</p>
+    <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+    1. นั่งดึงบาร์ด้วยมือกว้างเท่าหัวไหล่<br>
+    2. ดึงบาร์ลงมาที่หน้าอก<br>
+    3. คลายบาร์ขึ้นอย่างช้า ๆ</p>
+      <a href="https://www.youtube.com/watch?v=4VW-TRijm2E&pp=ygUUbGF0cHVsbGRvd27guKrguK3guJk%3D" target="_blank" class="youtube-link">
+        ชมวิดีโอบน YouTube
+      </a>
+    </div>
+  </div>
+
+  <div class="exercise-card">
+    <img src="photo/back/bent-over-row-800.avif" alt="bent-over-row">
+    <div class="content">
+      <h2>bent-over-row</h2>
+    
+    <p><strong>ประโยชน์:</strong><br>
+    - เสริมกล้ามเนื้อหลังส่วนกลาง<br>
+    - กระชับแขนและแกนกลางลำตัว</p>
+    <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+    1. ก้มตัวไปข้างหน้า มือถือดัมเบล/บาร์<br>
+    2. ดึงน้ำหนักขึ้นใกล้ลำตัว<br>
+    3. ลดน้ำหนักลงอย่างช้า ๆ</p>
+      <a href="https://youtu.be/IyfWH-J2E4c" target="_blank" class="youtube-link">
+        ชมวิดีโอบน YouTube
+      </a>
+    </div>
+  </div>
+
+  <div class="exercise-card">
+    <img src="photo/back/dumbbell-row-800.jpg" alt="dumbbell-row">
+    <div class="content">
+      <h2>dumbbell-row</h2>
+     <p><strong>ประโยชน์:</strong><br>
+    - เสริมกล้ามเนื้อหลัง<br>
+    - กระชับแขนและไหล่</p>
+    <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+    1. วางมือข้างหนึ่งบนที่นั่ง มืออีกข้างถือดัมเบล<br>
+    2. ดึงดัมเบลขึ้นใกล้ลำตัว<br>
+    3. ลดลงช้า ๆ แล้วสลับข้าง</p>
+      <a href="https://www.youtube.com/watch?v=yy3dgposEOw&pp=ygUWZHVtYmJlbGwgcm93IOC4quC4reC4mQ%3D%3D" target="_blank" class="youtube-link">
+        ชมวิดีโอบน YouTube
+      </a>
+    </div>
+  </div>
+
+  <div class="exercise-card">
+    <img src="photo/back/seated-cable-row-800.jpg" alt="seated-cable-row">
+    <div class="content">
+      <h2>seated-cable-row</h2>
+   
+    <p><strong>ประโยชน์:</strong><br>
+    - เสริมกล้ามเนื้อหลัง<br>
+    - กระชับแขนและแกนกลางลำตัว</p>
+    <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+    1. นั่งตรง มือจับสายเคเบิล<br>
+    2. ดึงสายเข้าหาลำตัว<br>
+    3. คลายสายออกช้า ๆ</p>
+      <a href="https://www.youtube.com/shorts/5Y32un_XBts" target="_blank" class="youtube-link">
+        ชมวิดีโอบน YouTube
+      </a>
+    </div>
+  </div>
+
+  <div class="exercise-card">
+    <img src="photo/back/back-extension-800.avif" alt="back-extension">
+    <div class="content">
+      <h2>back-extension</h2>
+      <p><strong>ประโยชน์:</strong><br>
+    - เสริมกล้ามเนื้อหลังส่วนล่าง<br>
+    - ช่วยพัฒนาความแข็งแรงแกนกลางลำตัว</p>
+    <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+    1. นอนคว่ำบนเครื่อง Back Extension<br>
+    2. ยกตัวขึ้นให้หลังตรง<br>
+    3. ลดตัวลงอย่างช้า ๆ</p>
+      <a href="https://www.youtube.com/watch?v=10wUMPOERHs&pp=ygUYYmFjayBleHRlbnNpb24g4Liq4Lit4LiZ" target="_blank" class="youtube-link">
+        ชมวิดีโอบน YouTube
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ส่วนกล้ามเนื้อขา -->
+<h2 class="section-title">กล้ามเนื้อขา</h2>
+<div class="container">
+  <div class="exercise-card">
+    <img src="photo/Leg/squat-800.avif" alt="squat">
+    <div class="content">
+      <h2>squat</h2>
+    
+<p><strong>ประโยชน์:</strong><br>
+    - เสริมกล้ามเนื้อขา (ต้นขา หน้า-หลัง)<br>
+    - เสริมความแข็งแรงสะโพกและแกนกลางลำตัว</p>
+    <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+    1. ยืนตรงเท้ากว้างเท่าช่วงไหล่<br>
+    2. โน้มตัวลงโดยให้เข่าลงต่ำไปทางเท้า<br>
+    3. กลับมายืนตรงช้า ๆ</p>
+  
+  
+      <a href="https://www.youtube.com/shorts/IDThC2eKIYU" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+    </div>
+  </div>
+
+  <div class="exercise-card">
+    <img src="photo/Leg/sled-leg-press-800.avif" alt="sled-leg-press">
+    <div class="content">
+      <h2>sled-leg-press</h2>
+      
+    <p><strong>ประโยชน์:</strong><br>
+    - เสริมกล้ามเนื้อขา (ต้นขา หน้า-หลัง)<br>
+    - เสริมสะโพกและความแข็งแรงแกนกลางลำตัว</p>
+    <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+    1. นั่งบนเครื่อง Leg Press วางเท้าบนแผ่น<br>
+    2. กดแผ่นออกจนขาเหยียด แต่ไม่ล็อกเข่า<br>
+    3. ค่อย ๆ งอเข่าลดแผ่นลงช้า ๆ</p>
+      <a href="https://youtu.be/kTM85YKV7ls" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+    </div>
+  </div>
+
+  <div class="exercise-card">
+    <img src="photo/Leg/leg-extension-800.jpg" alt="leg-extension">
+    <div class="content">
+      <h2>leg-extension</h2>
+     <p><strong>ประโยชน์:</strong><br>
+    - เสริมกล้ามเนื้อต้นขาด้านหน้า<br>
+    - ช่วยเพิ่มความแข็งแรงและความคมของกล้ามเนื้อขา</p>
+    <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+    1. นั่งบนเครื่อง Leg Extension วางเท้าบนแท่น<br>
+    2. ยกขาขึ้นจนขาตรงเต็มที่<br>
+    3. ลดขาลงอย่างช้า ๆ ไม่ให้แท่นกระแทก</p>
+      <a href="https://www.youtube.com/watch?v=dpn7z7nYRcQ&pp=ygUXbGVnLWV4dGVuc2lvbiDguKrguK3guJk%3D" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+    </div>
+  </div>
+
+  <div class="exercise-card">
+    <img src="photo/Leg/sumo-squat-800.jpg" alt="sumo-squat">
+    <div class="content">
+      <h2>sumo-squat</h2>
+  
+    <p><strong>ประโยชน์:</strong><br>
+    - เสริมกล้ามเนื้อขาด้านในและก้น<br>
+    - ช่วยเพิ่มความยืดหยุ่นสะโพกและความแข็งแรงขา</p>
+    <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+    1. ยืนกว้างกว่าช่วงไหล่ นิ้วเท้าชี้ออกด้านข้างเล็กน้อย<br>
+    2. ย่อตัวลงเหมือนนั่งเก้าอี้ ขาและหลังตรง<br>
+    3. ดันตัวขึ้นกลับสู่ท่ายืนตรง</p>
+      <a href="https://www.youtube.com/watch?v=bCzg9p-nMoE&pp=ygUpc3VtbyBzcXVhdCDguJfguLXguYjguJbguLnguIHguJXguYnguK3guIfSBwkJ_AkBhyohjO8%3D" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+    </div>
+  </div>
+
+  <div class="exercise-card">
+    <img src="photo/Leg/hip-adduction-800.avif" alt="hip-adduction">
+    <div class="content">
+      <h2>hip-adduction</h2>
+      <p><strong>ประโยชน์:</strong><br>
+    - เสริมกล้ามเนื้อขาด้านใน<br>
+    - ช่วยเพิ่มความมั่นคงของสะโพกและเข่า</p>
+    <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+    1. นั่งบนเครื่อง Hip Adduction<br>
+    2. วางขาออกด้านข้างให้เครื่องต้าน<br>
+    3. บีบขาเข้าหากันช้า ๆ<br>
+    4. คลายขาออกอย่างช้า ๆ</p>
+      <a href="https://www.youtube.com/watch?v=Q52PA8hwLXY&pp=ygUbTGVnL2hpcC1hZGR1Y3Rpb24g4Liq4Lit4LiZ" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+    </div>
+  </div>
+
+  <div class="exercise-card">
+    <img src="photo/Leg/seated-leg-curl-800.jpg" alt="seated-leg-curl">
+    <div class="content">
+      <h2>seated-leg-curl</h2>
+      <p><strong>ประโยชน์:</strong><br>
+    - เสริมกล้ามเนื้อต้นขาด้านหลัง (Hamstrings)<br>
+    - ช่วยเพิ่มความยืดหยุ่นและความแข็งแรงของเข่า</p>
+    <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+    1. นั่งบนเครื่อง Seated Leg Curl<br>
+    2. วางข้อเท้าใต้แท่งหมุนของเครื่อง<br>
+    3. งอเข่าดึงแท่งเข้าหาต้นขา<br>
+    4. คลายขาลงอย่างช้า ๆ</p>
+      <a href="https://www.youtube.com/watch?v=xon5iQudtDM&pp=ygUdc2VhdGVkIGxlZyBjdXJsIOC4quC4reC4mWddam_SBwkJ_AkBhyohjO8%3D" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+    </div>
+  </div>
+</div>
+
+<!-- ส่วนกล้ามเนื้อหน้าแขน -->
+<h2 class="section-title">กล้ามเนื้อหน้าแขน</h2>
+<div class="container">
+
+  <div class="exercise-card">
+    <img src="photo/bicep/dumbbellcurl.avif" alt="dumbbellcurl;">
+    <div class="content">
+      <h2>dumbbellcurl</h2>
+      <p><strong>ประโยชน์:</strong><br>
+    - เสริมกล้ามเนื้อแขนส่วนหน้า (Biceps)<br>
+    - ช่วยเพิ่มความแข็งแรงและความทนทานของแขน</p>
+    <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+    1. ยืนตรง มือถือดัมเบลทั้งสองข้าง<br>
+    2. งอศอกยกดัมเบลขึ้นมาที่ระดับไหล่<br>
+    3. ลดดัมเบลลงอย่างช้า ๆ<br>
+    4. รักษาหลังให้ตรงตลอดเวลา</p>
+      <a href="https://www.youtube.com/watch?v=TFUznuXdPVo&pp=ygUWZHVtYmJlbGxjdXJsIOC4quC4reC4mQ%3D%3D" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+    </div>
+  </div>
+
+  <div class="exercise-card">
+    <img src="photo/bicep/hammer-curl-800.avif" alt="hammer-curl">
+    <div class="content">
+      <h2>hammer-curl</h2>
+    <p><strong>ประโยชน์:</strong><br>
+    - เสริมกล้ามเนื้อแขนส่วนหน้า (Biceps) และแขนส่วนข้าง (Brachialis)<br>
+    - ช่วยเพิ่มความแข็งแรงและความทนทานของแขน</p>
+    <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+    1. ยืนตรง มือถือดัมเบลทั้งสองข้าง โดยฝ่ามือหันเข้าหากัน<br>
+    2. งอศอกยกดัมเบลขึ้นจนระดับไหล่<br>
+    3. ลดดัมเบลลงอย่างช้า ๆ<br>
+    4. รักษาหลังให้ตรงและไม่แกว่งตัว</p>
+      <a href="https://www.youtube.com/watch?v=I0WmTzb7viM&pp=ygUUaGFtbWVyLWN1cmzguKrguK3guJk%3D" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+    </div>
+  </div>
+
+  <div class="exercise-card">
+    <img src="photo/bicep/preacher-curl-800.avif" alt="preacher-curl">
+    <div class="content">
+      <h2>preacher-curl</h2>
+     <p><strong>ประโยชน์:</strong><br>
+    - เสริมกล้ามเนื้อแขนส่วนหน้า (Biceps) โดยเฉพาะส่วนปลาย<br>
+    - ช่วยควบคุมการเคลื่อนไหวและลดการใช้แรงช่วยจากหลัง</p>
+    <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+    1. นั่งบนม้านั่ง Preacher Curl<br>
+    2. วางแขนบนแผ่นรอง ให้ข้อศอกอยู่กับแผ่นรอง<br>
+    3. ใช้กล้ามเนื้อแขนงอดัมเบลหรือบาร์ขึ้น<br>
+    4. ลดน้ำหนักลงอย่างช้า ๆ<br>
+    5. รักษาการเคลื่อนไหวให้นิ่ง ไม่แกว่งตัว</p>
+      <a href="https://youtu.be/g_YT86IH6hw" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+    </div>
+  </div>
+
+  <div class="exercise-card">
+    <img src="photo/bicep/machine-bicep-curl-800.avif" alt="machine-bicep-curl">
+    <div class="content">
+      <h2>machine-bicep-curl</h2>
+       <p><strong>ประโยชน์:</strong><br>
+    - เสริมกล้ามเนื้อแขนส่วนหน้า (Biceps)<br>
+    - ช่วยควบคุมการเคลื่อนไหวได้ง่ายและปลอดภัย<br>
+    - เหมาะสำหรับผู้เริ่มต้นหรือฟื้นฟู</p>
+    <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+    1. นั่งบนเครื่อง Machine Bicep Curl<br>
+    2. วางแขนบนแผ่นรองมือให้แน่น<br>
+    3. ดึงน้ำหนักขึ้นด้วยกล้ามเนื้อแขน<br>
+    4. ลดน้ำหนักลงอย่างช้า ๆ<br>
+    5. รักษาการเคลื่อนไหวให้ราบรื่น ไม่แกว่งตัว</p>
+      <a href="https://www.youtube.com/shorts/UDicVsawk2c" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+    </div>
+  </div>
+
+  <div class="exercise-card">
+    <img src="photo/bicep/dumbbell-concentration-curl-800.avif" alt="dumbbell-concentration-curl">
+    <div class="content">
+      <h2>dumbbell-concentration-curl</h2>
+      <p><strong>ประโยชน์:</strong><br>
+    - เสริมกล้ามเนื้อแขนส่วนหน้า (Biceps)<br>
+    - ช่วยเพิ่มความแข็งแรงและรูปทรงของแขน<br>
+    - เพิ่มการควบคุมกล้ามเนื้อและสมาธิในการฝึก</p>
+    <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+    1. นั่งบนม้านั่งโดยก้มตัวไปข้างหน้าเล็กน้อย<br>
+    2. ถือดัมเบลด้วยมือข้างหนึ่ง วางศอกบนต้นขาด้านใน<br>
+    3. ดึงดัมเบลขึ้นด้วยกล้ามเนื้อแขนส่วนหน้า<br>
+    4. ลดดัมเบลลงอย่างช้า ๆ<br>
+    5. สลับมือทำซ้ำ</p>
+      <a href="https://www.youtube.com/watch?v=tCGFvyrJGvk&pp=ygUlZHVtYmJlbGwtY29uY2VudHJhdGlvbi1jdXJsIOC4quC4reC4mdIHCQn8CQGHKiGM7w%3D%3D" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+    </div>
+  </div>
+
+  <div class="exercise-card">
+    <img src="photo/bicep/zottman-curl-800.avif" alt="zottman-curl">
+    <div class="content">
+      <h2>zottman-curl</h2>
+    <p><strong>ประโยชน์:</strong><br>
+    - เสริมกล้ามเนื้อแขนส่วนหน้า (Biceps)<br>
+    - ฝึกกล้ามเนื้อแขนด้านหลัง (Forearm) ในขณะลดน้ำหนักลง<br>
+    - เพิ่มความแข็งแรงและความสมดุลของแขน</p>
+    <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+    1. ถือดัมเบลด้วยมือทั้งสอง วางแขนข้างลำตัว<br>
+    2. ดึงดัมเบลขึ้นโดยหงายฝ่ามือขึ้น (Supinated Grip)<br>
+    3. เมื่อดัมเบลถึงระดับไหล่ หมุนฝ่ามือคว่ำลง (Pronated Grip)<br>
+    4. ลดดัมเบลลงช้า ๆ ด้วยท่าฝ่ามือคว่ำ<br>
+    5. ทำซ้ำตามจำนวนครั้งที่กำหนด</p>
+      <a href="https://www.youtube.com/shorts/_DLGN7pEidM?feature=share" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ส่วนกล้ามเนื้อหลังแขน -->
+<h2 class="section-title">กล้ามเนื้อหลังแขน</h2>
+<div class="container">
+
+  <div class="exercise-card">
+    <img src="photo/tricep/tricep-rope-pushdown-800.avif" alt="tricep-rope-pushdown">
+    <div class="content">
+      <h2>tricep-rope-pushdown</h2>
+  
+    <p><strong>ประโยชน์:</strong><br>
+    - เสริมกล้ามเนื้อแขนด้านหลัง (Triceps)<br>
+    - ช่วยเพิ่มความแข็งแรงและความกระชับของแขน<br>
+    - ปรับปรุงการทรงตัวของแขนในการทำกิจกรรมต่าง ๆ</p>
+    <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+    1. ยืนตรงหน้าสายเคเบิล ใช้เชือกจับมือทั้งสองข้าง<br>
+    2. ดึงเชือกลงจนแขนตรงด้านล่าง<br>
+    3. ค่อย ๆ ให้แขนกลับขึ้นในท่าผ่อนคลาย<br>
+    4. รักษาหลังตรงและแขนติดลำตัวตลอดเวลา<br>
+    5. ทำซ้ำตามจำนวนครั้งที่กำหนด</p>
+      <a href="https://www.youtube.com/shorts/QmlUvIg0Bhk" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+    </div>
+  </div>
+
+  <div class="exercise-card">
+    <img src="photo/tricep/reverse-grip-tricep-pushdown-800.avif" alt="reverse-grip-tricep-pushdown">
+    <div class="content">
+      <h2>reverse-grip-tricep-pushdown</h2>
+     <p><strong>ประโยชน์:</strong><br>
+    - เสริมกล้ามเนื้อแขนด้านหลัง (Triceps) โดยเน้นหัวยาวของกล้ามเนื้อ<br>
+    - เพิ่มความแข็งแรงและความกระชับของแขน<br>
+    - ช่วยปรับท่าทางแขนและการใช้งานในการดัน</p>
+    <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+    1. ยืนตรงหน้าสายเคเบิล ใช้บาร์จับด้วยฝ่ามือหันขึ้น<br>
+    2. ดึงบาร์ลงจนแขนตรงด้านล่าง<br>
+    3. ค่อย ๆ ให้แขนกลับขึ้นในท่าผ่อนคลาย<br>
+    4. รักษาหลังตรงและแขนติดลำตัวตลอดเวลา<br>
+   </p>
+      <a href="https://www.youtube.com/watch?v=YwzYl2Y8tnM&pp=ygUmcmV2ZXJzZS1ncmlwLXRyaWNlcC1wdXNoZG93biDguKrguK3guJk%3D" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+    </div>
+  </div>
+
+  <div class="exercise-card">
+    <img src="photo/tricep/cable-overhead-tricep-extension-800.avif" alt="cable-overhead-tricep-extension">
+    <div class="content">
+      <h2>cable-overhead-tricep-extension</h2>
+     <p><strong>ประโยชน์:</strong><br>
+    - เสริมกล้ามเนื้อแขนด้านหลัง (Triceps) โดยเน้นส่วนยาวของกล้ามเนื้อ<br>
+    - ช่วยเพิ่มความแข็งแรงในการดันเหนือศีรษะ<br>
+    - ปรับปรุงท่าทางและการใช้งานแขนในชีวิตประจำวัน</p>
+    <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+    1. ยืนตรงหน้าสายเคเบิล ใช้เชือกจับเหนือศีรษะ<br>
+    2. ค่อย ๆ ยืดแขนขึ้นจนแขนตรงเหนือศีรษะ<br>
+    3. ลดแขนลงช้า ๆ จนข้อศอกงอประมาณ 90 องศา<br>
+    4. รักษาแขนติดหัวไหล่และหลังตรงตลอดเวลา<br>
+   </p>
+      <a href="https://www.youtube.com/shorts/9Ark9S11uXw" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+    </div>
+  </div>
+
+<div class="exercise-card">
+    <img src="photo/tricep/lying-tricep-extension-800.avif" alt="lying-tricep-extension">
+    <div class="content">
+      <h2>lying-tricep-extension</h2>
+     <p><strong>ประโยชน์:</strong><br>
+    - เสริมกล้ามเนื้อแขนด้านหลัง (Triceps)<br>
+    - เพิ่มความแข็งแรงในการดันและยกของ<br>
+    - ช่วยปรับปรุงรูปร่างแขนให้เรียวกระชับ</p>
+    <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+    1. นอนหงายบนม้านั่ง รักษาเท้าแนบพื้น<br>
+    2. ถือดัมเบลหรือบาร์ตรงเหนือหน้าอก แขนตรง<br>
+    3. ลดน้ำหนักลงช้า ๆ จนข้อศอกงอประมาณ 90 องศา<br>
+    4. ยกน้ำหนักกลับขึ้นจนแขนตรงโดยไม่ล็อกข้อศอก<br>
+  </p>
+      <a href="https://youtu.be/Lzvv9jh3A-s" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+    </div>
+  </div>
+
+  <div class="exercise-card">
+    <img src="photo/tricep/dumbbell-tricep-extension-800.avif" alt="dumbbell-tricep-extension">
+    <div class="content">
+      <h2>dumbbell-tricep-extension</h2>
+      <p><strong>ประโยชน์:</strong><br>
+    - เสริมกล้ามเนื้อแขนด้านหลัง (Triceps)<br>
+    - เพิ่มความแข็งแรงในการดันและยกของ<br>
+    - ช่วยปรับปรุงรูปร่างแขนให้เรียวกระชับ</p>
+    <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+    1. นั่งหรือยืน ถือดัมเบลสองมือเหนือศีรษะ<br>
+    2. ลดดัมเบลลงช้า ๆ ข้างหลังศีรษะจนข้อศอกงอประมาณ 90 องศา<br>
+    3. ยกดัมเบลกลับขึ้นจนแขนตรงโดยไม่ล็อกข้อศอก<br>
+    4. รักษาสะโพกและหลังตรงตลอดเวลา<br>
+    5. ทำซ้ำตามจำนวนครั้งที่กำหนด</p>
+      <a href="https://www.youtube.com/watch?v=jwp9BLH91sM&pp=ygUjZHVtYmJlbGwtdHJpY2VwLWV4dGVuc2lvbiDguK3guKrguJk%3D" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+    </div>
+  </div>
+
+  <div class="exercise-card">
+    <img src="photo/tricep/dumbbell-tricep-kickback-800.avif" alt="dumbbell-tricep-kickback">
+    <div class="content">
+      <h2>dumbbell-tricep-kickback</h2>
+      <p><strong>ประโยชน์:</strong><br>
+    - เสริมกล้ามเนื้อแขนด้านหลัง (Triceps)<br>
+    - ช่วยปรับรูปร่างแขนให้กระชับ<br>
+    - เพิ่มความแข็งแรงในการดันและยืดแขน</p>
+    <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+    1. ถือดัมเบลในแต่ละมือ ก้มตัวไปข้างหน้าเล็กน้อย<br>
+    2. เก็บข้อศอกชิดลำตัว งอประมาณ 90 องศา<br>
+    3. ดันดัมเบลไปด้านหลังจนแขนตรง<br>
+    4. ลดดัมเบลกลับมาช้า ๆ<br>
+    5. รักษาหลังและสะโพกให้ตรงตลอดเวลา</p>
+      <a href="https://youtu.be/hUMGXcRFRQQ" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ส่วนกล้ามเนื้อไหล่ -->
+<h2 class="section-title">กล้ามเนื้อไหล่</h2>
+<div class="container">
+
+  <div class="exercise-card">
+    <img src="photo/shoulder/dumbbell-shoulder-press-800.avif" alt="shoulder-press">
+    <div class="content">
+      <h2>shoulder-press</h2>
+      <p><strong>ประโยชน์:</strong><br>
+    - เสริมกล้ามเนื้อไหล่ (Deltoids)<br>
+    - ช่วยเพิ่มความแข็งแรงและทรงตัวของแขน<br>
+    - พัฒนากล้ามเนื้อส่วนบนของร่างกาย</p>
+    <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+    1. ถือดัมเบลในแต่ละมือที่ระดับไหล่ ฝ่ามือหันไปด้านหน้า<br>
+    2. กดดัมเบลขึ้นไปเหนือศีรษะจนแขนตรง<br>
+    3. ลดดัมเบลกลับมาที่ระดับไหล่ช้า ๆ<br>
+    4. รักษาหลังตรงและไม่โยกตัวขณะยก</p>
+      <a href="https://youtu.be/Ecw-aKrxnTM" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+    </div>
+  </div>
+
+  <div class="exercise-card">
+    <img src="photo/shoulder/dumbbell-front-raise-800.avif" alt="dumbbell-front-raise">
+    <div class="content">
+      <h2>dumbbell-front-raise</h2>
+    
+    <p><strong>ประโยชน์:</strong><br>
+    - เสริมกล้ามเนื้อไหล่ด้านหน้า (Front Deltoids)<br>
+    - ช่วยให้ไหล่แข็งแรงและยกของได้ง่ายขึ้น<br>
+    - พัฒนาความสมดุลของแขนและไหล่</p>
+    <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+    1. ถือดัมเบลในแต่ละมือ ข้างลำตัว ฝ่ามือหันเข้าหากัน<br>
+    2. ยกดัมเบลขึ้นไปด้านหน้าจนระดับสายตา<br>
+    3. ลดดัมเบลกลับลงมาช้า ๆ ควบคุมการเคลื่อนไหว<br>
+    4. รักษาหลังตรงและไม่แกว่งตัว</p>
+      <a href="https://youtu.be/XjM5BrTKJho" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+    </div>
+  </div>
+
+  <div class="exercise-card">
+    <img src="photo/shoulder/dumbbell-lateral-raise-800.avif" alt="dumbbell-lateral-raise">
+    <div class="content">
+      <h2>dumbbell-lateral-raise</h2>
+      <strong>ประโยชน์:</strong><br>
+    - เสริมกล้ามเนื้อไหล่ด้านข้าง<br>
+    - ช่วยให้ไหล่กว้างและสวยงาม<br>
+    - พัฒนาความแข็งแรงของแขนและไหล่</p>
+    <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+    1. ถือดัมเบลในแต่ละมือ ข้างลำตัว ฝ่ามือหันเข้าหากัน<br>
+    2. ยกดัมเบลออกด้านข้างจนระดับไหล่<br>
+    3. ลดดัมเบลกลับลงมาช้า ๆ ควบคุมการเคลื่อนไหว<br>
+    4. รักษาหลังตรงและไม่แกว่งตัว</p>
+      <a href="https://youtu.be/puqaiVqacvQ" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+    </div>
+  </div>
+
+  <div class="exercise-card">
+    <img src="photo/shoulder/cable-lateral-raise-800.avif" alt="cable-lateral-raise">
+    <div class="content">
+      <h2>cable-lateral-raise</h2>
+<p><strong>ประโยชน์:</strong><br>
+    - เสริมกล้ามเนื้อไหล่ด้านข้าง (Lateral Deltoids)<br>
+    - ช่วยให้ไหล่กว้างและรูปร่างสมดุล<br>
+    - พัฒนาความแข็งแรงของแขนและไหล่</p>
+    <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+    1. ยืนด้านข้างกับเครื่องเคเบิล มือหนึ่งจับด้ามจับ<br>
+    2. ยกแขนขึ้นด้านข้างจนระดับไหล่<br>
+    3. ลดแขนกลับลงมาช้า ๆ ควบคุมแรงต้าน<br>
+    4. รักษาหลังตรงและไม่แกว่งตัว</p>
+
+     <a href="https://www.youtube.com/shorts/Hte06Yf9vyE" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+    </div>
+  </div>
+
+  <div class="exercise-card">
+    <img src="photo/shoulder/arnold-press-800.avif" alt="arnold-press">
+    <div class="content">
+      <h2>arnold-press</h2>
+     <p><strong>ประโยชน์:</strong><br>
+    - เสริมกล้ามเนื้อไหล่ทั้งหมด (Front, Side, Rear Deltoids)<br>
+    - ช่วยเพิ่มความแข็งแรงและขนาดของไหล่<br>
+    - พัฒนาความเสถียรของข้อไหล่และแขน</p>
+    <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+    1. ถือดัมเบลล์สองข้างที่ระดับหน้าอก ฝ่ามือหันเข้าหาตัว<br>
+    2. หมุนข้อมือไปด้านนอกขณะกดดัมเบลล์ขึ้นเหนือศีรษะ<br>
+    3. ลดดัมเบลล์กลับมาในท่าเริ่มต้นควบคุมแรงต้าน<br>
+    4. รักษาหลังตรงและแกนกลางลำตัวมั่นคง</p>
+      <a href="https://www.youtube.com/shorts/hmsmi9cv0mY?feature=share" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+    </div>
+  </div>
+
+  <div class="exercise-card">
+    <img src="photo/shoulder/face-pull-800.avif" alt="face-pull">
+    <div class="content">
+      <h2>face-pull</h2>
+      <p><strong>ประโยชน์:</strong><br>
+    - เสริมกล้ามเนื้อไหล่ด้านหลัง (Rear Deltoids)<br>
+    - ช่วยปรับปรุงท่าทางของร่างกาย<br>
+    - พัฒนาความแข็งแรงของหลังบนและกล้ามเนื้อรอบไหล่</p>
+    <p><strong>วิธีการออกกำลังกายพื้นฐาน:</strong><br>
+  
+    1. ใช้เคเบิลพร้อมเชือก วางสายไว้สูงกว่าระดับศีรษะเล็กน้อย<br>
+    2. จับเชือกด้วยฝ่ามือหันเข้าหาตัว<br>
+    3. ดึงเชือกเข้าหาใบหน้าโดยให้ศอกชี้ออกด้านข้าง<br>
+    4. ควบคุมแรงต้านเมื่อปล่อยเชือกกลับไปท่าเริ่มต้น<br>
+    5. รักษาแกนกลางลำตัวมั่นคงและหลังตรง</p>
+      <a href="https://youtu.be/pmi_a0nhfF8" target="_blank" class="youtube-link">ชมวิดีโอบน YouTube</a>
+    </div>
+  </div>
+
+</div>
+
+  <footer>
+    <p>© 2025 FitLife | ออกกำลังกายง่ายๆ เพื่อสุขภาพดีทุกวัน</p>
+  </footer>
+
+</body>
+</html>
+
